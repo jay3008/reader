@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reader</title>
+    <style>
+        body{
+            margin: 0;
+            background-image: url("coding2.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .reader{
+            background-color: brown;
+            color: #fff;
+            padding: 100px;
+            box-sizing: border-box;
+            box-shadow: 2px 2px 20px #fff;
+            border-radius: 20px;
+        }
+        #name{
+            font-size: 40px;
+        }
+        #paragraph{
+            line-height: 30px;
+            font-size: 18px;
+        }
+        .reader>input{
+            padding: 5px 10px;
+            font-size: 18px;
+            outline: none;
+            border: none;
+            transition: all 0.5s;
+        }
+        .reader>input:focus{
+            box-shadow:  0px 0px 20px white;
+        }
+        .btn{
+            margin-top: 20px ;
+            padding: 10px 20px;
+            border: none;
+            font-size: 18px;
+            border-radius: 10px;
+            cursor: pointer;
+            background-color: antiquewhite;
+        }
+    </style>
+</head>
+<body>
+    <section class="container">
+        <div class="reader">
+            <h1 id="name">Hey !</h1>
+            <p id="paragraph">I may read your mind !
+            For that you have to select <br>
+            one number and don't tell me &#128513;<br>
+            Once you select please click on below button to continue</p>
+            <button class="btn" id="btnclick" onclick="test()">Click Me ! &#128512;</button>
+        </div>
+    </section>
+    <script>
+        let n = document.getElementById("name");
+        let name = prompt("Enter Your name: ");
+        if(name == null || name == ""){
+            alert("Oops ! you forgot to enter your name ..");
+            n.innerHTML = "Hey ! Unknown ";
+        }
+        else{
+            n.innerHTML = `Hey ! ${name} Welcome`;
+        }
+        let count = 1;
+        test = () => {
+            console.log("test");
+            if (count>6){count = 1;}
+            fun(count++);
+        }
+        let para = document.getElementById("paragraph");
+        let btnclick = document.getElementById("btnclick");
+        let num = 0;
+        let random = ()=>{
+            return Math.floor(Math.random() * 70) + 20;
+        }
+        let tmp = 0;
+        let fun = (count) =>{
+            console.log("Inside fun");
+            
+            console.log(count);
+            switch(count){
+                case 1:
+                    para.innerHTML = "Now Multiply your number by 2 ";
+                    btnclick.innerHTML = "Click Me to continue ! &#128512;";
+                    break;
+                case 2:
+                    tmp = random();
+                    if(tmp % 2!=0){tmp++;}
+                    para.innerHTML = `Now Add ${tmp} into that...`;
+
+                    break;
+                case 3:
+                    para.innerHTML = "Now Divide that number by 2 ";
+                    break;
+                case 4:
+                    para.innerHTML = "This is finally step now minus the number that you have selected at first step...<br> Now click below to know your ans..";
+                    break;
+                case 5:
+                    para.innerHTML = `Yeap ! Your ans is ${tmp/2} ! <br> I think I have read your mind ...`;
+                    btnclick.innerHTML = "Let me read your mind again &#128513;!";
+                    break;
+                case 6:
+                    para.innerHTML = `I may read your mind !
+                    For that you have to select <br>
+                        one number and don't tell me &#128513;<br>
+                    
+                    Once you select please click on below button to continue`;
+                    btnclick.innerHTML = "Click me !";
+                    
+                    break;
+            }
+        }
+    </script>
+</body>
+</html>
